@@ -22,6 +22,15 @@ TEST(TicTacToeBoardTest, willToggle)
 	EXPECT_TRUE(toggledTo == asserted);
 }
 
+TEST(TicTacToeBoardTest, willToggle2)
+{
+	TicTacToeBoard test;
+	Piece asserted = O;
+	Piece toggledTo = test.placePiece(0,0);
+	toggledTo = test.placePiece(0,1);
+	EXPECT_TRUE(toggledTo == asserted);
+}
+
 TEST(TicTacToeBoardTest, canPlace1)
 {
 	TicTacToeBoard test;
@@ -74,25 +83,58 @@ TEST(TicTacToeBoardTest, seeWin)
 	EXPECT_TRUE(test.getWinner() == asserted);
 }
 
+/**
+ * This tests for the fowards diagonal 0,0 to 2,2
+**/
 TEST(TicTacToeBoardTest, seeWin2)
 {
 	TicTacToeBoard test;
 	Piece asserted = Blank;
-	for(int i=0; i<2; i++)
-		for(int j=0; j<BOARDSIZE; j++)
-			test.placePiece(i, j);
-	test.placePiece(2,1);
-	test.placePiece(2,0);
-	test.placePiece(2,2);
+
+	test.placePiece(0, 0); //X
+	test.placePiece(0, 1); //O
+	test.placePiece(0, 2); //X
+	
+	test.placePiece(1, 1); //O
+	test.placePiece(1, 0); //X
+	test.placePiece(1, 2); //O
+
+	test.placePiece(2, 1); //X
+	test.placePiece(2, 0); //O
+	test.placePiece(2, 2); //X
 	EXPECT_TRUE(test.getWinner() == asserted);
 }
 
+/**
+ * This tests for the backwards diagonal 0,2 to 2,0
+**/
 TEST(TicTacToeBoardTest, seeWin3)
 {
 	TicTacToeBoard test;
-	Piece asserted = X;
-	for(int i=0; i<BOARDSIZE; i++)
-		for(int j=0; j<BOARDSIZE; j++)
-			test.placePiece(i, j);
+	Piece asserted = O;
+
+	test.placePiece(0, 0); //X
+	test.placePiece(0, 2); //O
+	test.placePiece(0, 1); //X
+	
+	test.placePiece(1, 1); //O
+	test.placePiece(1, 0); //X
+	test.placePiece(1, 2); //O
+
+	test.placePiece(2, 1); //X
+	test.placePiece(2, 0); //O
+	test.placePiece(2, 2); //X
+	EXPECT_TRUE(test.getWinner() == asserted);
+}
+
+/**
+ * This tests for a straight up+down win
+**/
+TEST(TicTacToeBoardTest, seeWin4)
+{
+	TicTacToeBoard test;
+	Piece asserted = Invalid;
+	
+	
 	EXPECT_TRUE(test.getWinner() == asserted);
 }
