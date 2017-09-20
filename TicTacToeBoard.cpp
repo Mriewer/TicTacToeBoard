@@ -72,6 +72,14 @@ Piece TicTacToeBoard::getPiece(int row, int column)
 Piece TicTacToeBoard::getWinner()
 {
   Piece place1, place2, place3;
+  for(int i=0; i<BOARDSIZE; i++)
+  {
+    for(int j=0; j<BOARDSIZE; j++)
+    {
+      if(getPiece(i, j) == Blank)
+        return Invalid;
+    }
+  }
   for(int x=0; x<BOARDSIZE; x++) // checks for rows and columns for wins
   {
     place1 = getPiece(x, 0);
@@ -94,13 +102,5 @@ Piece TicTacToeBoard::getWinner()
   place3 = getPiece(2, 0);
   if(place1 == place2 && place2 == place3) // checks 0,2 to 2,0 diagonal win
       return place1;
-  for(int i=0; i<BOARDSIZE; i++)
-  {
-    for(int j=0; j<BOARDSIZE; j++)
-    {
-      if(getPiece(i, j) == Blank)
-        return Invalid;
-    }
-  }
   return Blank;
 }
