@@ -85,22 +85,26 @@ Piece TicTacToeBoard::getWinner()
     place1 = getPiece(x, 0);
     place2 = getPiece(x, 1);
     place3 = getPiece(x, 2);
-    if(place1 == place2 && place2 == place3) // checks row wins
-      return place1;
+    if(place1 != Blank)
+       if(place1 == place2 && place2 == place3) // checks row wins
+        return place1;
     place1 = getPiece(0, x);
     place2 = getPiece(1, x);
     place3 = getPiece(2, x);
-    if(place1 == place2 && place2 == place3) // checks column wins
-      return place1;
+    if(place1 != Blank)
+      if(place1 == place2 && place2 == place3) // checks column wins
+        return place1;
   }
   place1 = getPiece(1, 1);
   place2 = getPiece(0, 0);
   place3 = getPiece(2, 2);
-  if(place1 == place2 && place2 == place3) // checks 0,0 to 2,2 diagonal win
+  if(place1 != Blank)
+    if(place1 == place2 && place2 == place3) // checks 0,0 to 2,2 diagonal win
       return place1;
   place2 = getPiece(0, 2);
   place3 = getPiece(2, 0);
-  if(place1 == place2 && place2 == place3) // checks 0,2 to 2,0 diagonal win
+  if(place1 != Blank) 
+    if(place1 == place2 && place2 == place3) // checks 0,2 to 2,0 diagonal win
       return place1;
   return Blank;
 }
