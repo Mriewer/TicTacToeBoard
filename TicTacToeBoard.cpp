@@ -66,9 +66,13 @@ Piece TicTacToeBoard::getPiece(int row, int column)
 }
 
 /**
- * Returns which Piece has won, if there is a winner, Invalid if the game
- * is not over, or Blank if the board is filled and no one has won.
-**/
+* 
+* BUG: This bug will fail to tell that there is a winner if there are any 
+*   blank squares on the board. 
+* i.e X has won 5 turns into the game, but the game will continue instead 
+*   of returning a winner
+* 
+*/
 Piece TicTacToeBoard::getWinner()
 {
   Piece place1, place2, place3;
