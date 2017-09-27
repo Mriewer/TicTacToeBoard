@@ -70,7 +70,7 @@ TEST(TicTacToeBoardTest, cannotPlaceNegativeRow)
 	EXPECT_TRUE(placed == asserted);
 }
 
-// This test will fail due to the board not being filled even though X has won My 'bug'
+// BUG: This test will fail due to the board not being filled even though X has won
 TEST(TicTacToeBoardTest, seeWin)
 {
 	TicTacToeBoard test;
@@ -128,13 +128,40 @@ TEST(TicTacToeBoardTest, seeWin3)
 }
 
 /**
- * This tests for a straight up+down win
+ * This tests for a cat game
 **/
 TEST(TicTacToeBoardTest, seeWin4)
 {
 	TicTacToeBoard test;
-	Piece asserted = Invalid;
+	Piece asserted = Blank;
+	test.placePiece(0, 0); //X
+	test.placePiece(0, 1); //O
+	test.placePiece(0, 2); //X
 	
-	
+	test.placePiece(1, 0); //O
+	test.placePiece(1, 2); //X
+	test.placePiece(1, 1); //O
+
+	test.placePiece(2, 1); //X
+	test.placePiece(2, 2); //O
+	test.placePiece(2, 0); //X
 	EXPECT_TRUE(test.getWinner() == asserted);
+}
+
+TEST(TicTacToeBoardTest, placeMore)
+{
+	TicTacToeBoard test;
+	Piece asserted = O;
+	test.placePiece(0, 0); //X
+	test.placePiece(0, 1); //O
+	test.placePiece(0, 2); //X
+	
+	test.placePiece(1, 0); //O
+	test.placePiece(1, 2); //X
+	test.placePiece(1, 1); //O
+
+	test.placePiece(2, 1); //X
+	test.placePiece(2, 2); //O
+	test.placePiece(2, 0); //X
+	EXPECT_TRUE(test.placePiece(0, 0) == asserted);
 }
